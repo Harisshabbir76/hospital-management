@@ -26,14 +26,17 @@ const AddPatient = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setMessage({ text: '', variant: '' });
+        console.log('Submitting form:', form); // ✅ DEBUG
         try {
             const res = await axios.post('http://localhost:5000/patients/add', form);
+            console.log('Response:', res); // ✅ DEBUG
             setMessage({
                 text: 'Patient added successfully!',
                 variant: 'success'
             });
             setForm({ name: '', age: '', gender: '' });
         } catch (err) {
+            console.error('API Error:', err); // ✅ DEBUG
             setMessage({
                 text: 'Error adding patient. Please try again.',
                 variant: 'danger'
