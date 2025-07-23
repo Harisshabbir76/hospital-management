@@ -61,7 +61,7 @@ const Appointments = () => {
         setMessage({ text: '', variant: '' });
 
         try {
-            await axios.post('http://51.20.54.29:5000 /appointments/add', appointment);
+            await axios.post('http://51.20.54.29:5000/appointments/add', appointment);
             setMessage({
                 text: 'Appointment scheduled successfully!',
                 variant: 'success'

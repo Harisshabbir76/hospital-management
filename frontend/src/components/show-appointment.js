@@ -20,7 +20,7 @@ const ViewAppointments = () => {
     };
 
     const fetchAppointments = () => {
-        axios.get('http://51.20.54.29:5000 /appointments')
+        axios.get('http://51.20.54.29:5000/appointments')
             .then(res => setAppointments(res.data))
             .catch(err => {
                 console.error('Error fetching appointments:', err);

@@ -27,7 +27,7 @@ const AddDoctor = () => {
         setMessage({ text: '', variant: '' });
 
         try {
-            await axios.post('http://51.20.54.29:5000 /doctors/add', form);
+            await axios.post('http://51.20.54.29:5000/doctors/add', form);
             setMessage({
                 text: 'Doctor added successfully!',
                 variant: 'success'

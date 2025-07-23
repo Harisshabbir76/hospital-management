@@ -28,7 +28,7 @@ const AddPatient = () => {
         setMessage({ text: '', variant: '' });
         console.log('Submitting form:', form); // ✅ DEBUG
         try {
-            const res = await axios.post('http://51.20.54.29:5000 /patients/add', form);
+            const res = await axios.post('http://51.20.54.29:5000/patients/add', form);
             console.log('Response:', res); // ✅ DEBUG
             setMessage({
                 text: 'Patient added successfully!',

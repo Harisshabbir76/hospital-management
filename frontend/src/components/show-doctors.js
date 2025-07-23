@@ -15,7 +15,7 @@ const ViewDoctors = () => {
     }, []);
 
     const fetchDoctors = () => {
-        axios.get('http://51.20.54.29:5000 /doctors')
+        axios.get('http://51.20.54.29:5000/doctors')
             .then(res => setDoctors(res.data))
             .catch(err => {
                 console.error('Error fetching doctors:', err);
