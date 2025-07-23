@@ -16,7 +16,7 @@ const ViewPatients = () => {
     }, []);
 
     const fetchPatients = () => {
-        axios.get('http://localhost:5000/patients')
+        axios.get('http://51.20.54.29:5000 /patients')
             .then(res => setPatients(res.data))
             .catch(err => {
                 console.error('Error fetching patients:', err);
@@ -37,7 +37,7 @@ const ViewPatients = () => {
 
     const handleUpdateSubmit = (e) => {
         e.preventDefault();
-        axios.post(`http://localhost:5000/patients/update/${selectedPatient._id}`, editForm)
+        axios.post(`http://51.20.54.29:5000 /patients/update/${selectedPatient._id}`, editForm)
             .then(() => {
                 setShowEditModal(false);
                 fetchPatients();
@@ -54,7 +54,7 @@ const ViewPatients = () => {
     };
 
     const handleDelete = () => {
-        axios.delete(`http://localhost:5000/patients/delete/${selectedPatient._id}`)
+        axios.delete(`http://51.20.54.29:5000 /patients/delete/${selectedPatient._id}`)
             .then(() => {
                 setShowDeleteModal(false);
                 fetchPatients();

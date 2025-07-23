@@ -20,7 +20,7 @@ const ViewAppointments = () => {
     };
 
     const fetchAppointments = () => {
-        axios.get('http://localhost:5000/appointments')
+        axios.get('http://51.20.54.29:5000 /appointments')
             .then(res => setAppointments(res.data))
             .catch(err => {
                 console.error('Error fetching appointments:', err);
@@ -33,7 +33,7 @@ const ViewAppointments = () => {
     }, []);
 
     const markAsCompleted = (id) => {
-        axios.patch(`http://localhost:5000/appointments/complete/${id}`)
+        axios.patch(`http://51.20.54.29:5000 /appointments/complete/${id}`)
             .then(() => fetchAppointments())
             .catch(err => {
                 console.error('Error marking appointment as completed:', err);

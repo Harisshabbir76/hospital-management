@@ -31,8 +31,8 @@ const Appointments = () => {
         const fetchData = async () => {
             try {
                 const [patientsRes, doctorsRes] = await Promise.all([
-                    axios.get('http://localhost:5000/patients'),
-                    axios.get('http://localhost:5000/doctors')
+                    axios.get('http://51.20.54.29:5000 /patients'),
+                    axios.get('http://51.20.54.29:5000 /doctors')
                 ]);
                 setPatients(patientsRes.data);
                 setDoctors(doctorsRes.data);
@@ -61,7 +61,7 @@ const Appointments = () => {
         setMessage({ text: '', variant: '' });
 
         try {
-            await axios.post('http://localhost:5000/appointments/add', appointment);
+            await axios.post('http://51.20.54.29:5000 /appointments/add', appointment);
             setMessage({
                 text: 'Appointment scheduled successfully!',
                 variant: 'success'
