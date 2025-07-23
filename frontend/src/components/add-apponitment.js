@@ -14,13 +14,19 @@ const Appointments = () => {
     const [message, setMessage] = useState({ text: '', variant: '' });
     const [loading, setLoading] = useState(true);
 
-    // Custom color styles
+    // Color theme styles
     const customStyles = {
         headerBg: { backgroundColor: '#4a148c', color: '#ffecb3' },
-        buttonPrimary: { backgroundColor: '#ffab00', borderColor: '#ffab00', color: '#4a148c' },
+        buttonPrimary: {
+            backgroundColor: '#ffab00',
+            borderColor: '#ffab00',
+            color: '#4a148c',
+            fontWeight: 'bold'
+        },
         cardBg: { backgroundColor: '#f3e5f5' }
     };
 
+    // Fetch patient and doctor data
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -32,9 +38,9 @@ const Appointments = () => {
                 setDoctors(doctorsRes.data);
             } catch (err) {
                 console.error('Error fetching data:', err);
-                setMessage({ 
-                    text: 'Failed to load data. Please try again.', 
-                    variant: 'danger' 
+                setMessage({
+                    text: 'Failed to load data. Please try again.',
+                    variant: 'danger'
                 });
             } finally {
                 setLoading(false);
@@ -44,30 +50,28 @@ const Appointments = () => {
         fetchData();
     }, []);
 
+    // Input change handler
     const handleChange = (e) => {
         setAppointment({ ...appointment, [e.target.name]: e.target.value });
     };
 
+    // Form submit handler
     const handleSubmit = async (e) => {
         e.preventDefault();
         setMessage({ text: '', variant: '' });
-        
+
         try {
             await axios.post('http://localhost:5000/appointments/add', appointment);
-            setMessage({ 
-                text: 'Appointment scheduled successfully!', 
-                variant: 'success' 
+            setMessage({
+                text: 'Appointment scheduled successfully!',
+                variant: 'success'
             });
-            setAppointment({
-                patientName: '',
-                doctorName: '',
-                date: ''
-            });
+            setAppointment({ patientName: '', doctorName: '', date: '' });
         } catch (err) {
             console.error(err);
-            setMessage({ 
-                text: 'Error scheduling appointment. Please try again.', 
-                variant: 'danger' 
+            setMessage({
+                text: 'Error scheduling appointment. Please try again.',
+                variant: 'danger'
             });
         }
     };
@@ -93,6 +97,7 @@ const Appointments = () => {
                             )}
 
                             <Form onSubmit={handleSubmit}>
+                                {/* Patient Dropdown */}
                                 <Form.Group className="mb-3">
                                     <Form.Label>Patient</Form.Label>
                                     <Form.Select
@@ -101,8 +106,8 @@ const Appointments = () => {
                                         onChange={handleChange}
                                         required
                                     >
-                                        <option value="">Select Patient</option>
-                                        {patients.map(patient => (
+                                        <option value="">-- Select Patient --</option>
+                                        {patients.map((patient) => (
                                             <option key={patient._id} value={patient.name}>
                                                 {patient.name}
                                             </option>
@@ -110,6 +115,7 @@ const Appointments = () => {
                                     </Form.Select>
                                 </Form.Group>
 
+                                {/* Doctor Dropdown */}
                                 <Form.Group className="mb-3">
                                     <Form.Label>Doctor</Form.Label>
                                     <Form.Select
@@ -118,8 +124,8 @@ const Appointments = () => {
                                         onChange={handleChange}
                                         required
                                     >
-                                        <option value="">Select Doctor</option>
-                                        {doctors.map(doctor => (
+                                        <option value="">-- Select Doctor --</option>
+                                        {doctors.map((doctor) => (
                                             <option key={doctor._id} value={doctor.name}>
                                                 Dr. {doctor.name} ({doctor.specialty})
                                             </option>
@@ -127,6 +133,7 @@ const Appointments = () => {
                                     </Form.Select>
                                 </Form.Group>
 
+                                {/* Date Input */}
                                 <Form.Group className="mb-4">
                                     <Form.Label>Appointment Date</Form.Label>
                                     <Form.Control
@@ -139,11 +146,12 @@ const Appointments = () => {
                                     />
                                 </Form.Group>
 
+                                {/* Submit Button */}
                                 <div className="d-grid gap-2">
-                                    <Button 
-                                        style={customStyles.buttonPrimary}
+                                    <Button
                                         type="submit"
                                         size="lg"
+                                        style={customStyles.buttonPrimary}
                                     >
                                         Schedule Appointment
                                     </Button>

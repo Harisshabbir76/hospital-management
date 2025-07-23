@@ -8,6 +8,7 @@ const AddDoctor = () => {
         name: '',
         specialty: ''
     });
+
     const [message, setMessage] = useState({ text: '', variant: '' });
 
     // Custom color styles
@@ -24,19 +25,19 @@ const AddDoctor = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setMessage({ text: '', variant: '' });
-        
+
         try {
             await axios.post('http://localhost:5000/doctors/add', form);
-            setMessage({ 
-                text: 'Doctor added successfully!', 
-                variant: 'success' 
+            setMessage({
+                text: 'Doctor added successfully!',
+                variant: 'success'
             });
             setForm({ name: '', specialty: '' });
         } catch (err) {
             console.error(err);
-            setMessage({ 
-                text: 'Failed to add doctor. Please try again.', 
-                variant: 'danger' 
+            setMessage({
+                text: 'Failed to add doctor. Please try again.',
+                variant: 'danger'
             });
         }
     };
@@ -48,33 +49,37 @@ const AddDoctor = () => {
                     <h2 className="mb-0">Add New Doctor</h2>
                 </Card.Header>
                 <Card.Body>
-                    <Form onSubmit={handleSubmit}>
+                    <Form onSubmit={handleSubmit} autoComplete="on">
                         <Form.Group className="mb-3">
-                            <Form.Label>Doctor's Name</Form.Label>
+                            <Form.Label htmlFor="doctorName">Doctor's Name</Form.Label>
                             <Form.Control
+                                id="doctorName"
                                 type="text"
                                 name="name"
                                 value={form.name}
                                 onChange={handleChange}
                                 required
                                 placeholder="Enter doctor's full name"
+                                autoComplete="name"
                             />
                         </Form.Group>
 
                         <Form.Group className="mb-4">
-                            <Form.Label>Specialty</Form.Label>
+                            <Form.Label htmlFor="doctorSpecialty">Specialty</Form.Label>
                             <Form.Control
+                                id="doctorSpecialty"
                                 type="text"
                                 name="specialty"
                                 value={form.specialty}
                                 onChange={handleChange}
                                 required
                                 placeholder="Enter medical specialty"
+                                autoComplete="off"
                             />
                         </Form.Group>
 
                         <div className="d-grid gap-2">
-                            <Button 
+                            <Button
                                 style={customStyles.buttonPrimary}
                                 type="submit"
                                 size="lg"

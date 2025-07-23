@@ -28,15 +28,15 @@ const AddPatient = () => {
         setMessage({ text: '', variant: '' });
         try {
             const res = await axios.post('http://localhost:5000/patients/add', form);
-            setMessage({ 
-                text: 'Patient added successfully!', 
-                variant: 'success' 
+            setMessage({
+                text: 'Patient added successfully!',
+                variant: 'success'
             });
             setForm({ name: '', age: '', gender: '' });
         } catch (err) {
-            setMessage({ 
-                text: 'Error adding patient. Please try again.', 
-                variant: 'danger' 
+            setMessage({
+                text: 'Error adding patient. Please try again.',
+                variant: 'danger'
             });
             console.error(err);
         }
@@ -49,22 +49,25 @@ const AddPatient = () => {
                     <h2 className="mb-0">Add New Patient</h2>
                 </Card.Header>
                 <Card.Body>
-                    <Form onSubmit={handleSubmit}>
+                    <Form onSubmit={handleSubmit} autoComplete="on">
                         <Form.Group className="mb-3">
-                            <Form.Label>Full Name</Form.Label>
+                            <Form.Label htmlFor="patientName">Full Name</Form.Label>
                             <Form.Control
+                                id="patientName"
                                 type="text"
                                 name="name"
                                 value={form.name}
                                 onChange={handleChange}
                                 required
                                 placeholder="Enter patient's full name"
+                                autoComplete="name"
                             />
                         </Form.Group>
 
                         <Form.Group className="mb-3">
-                            <Form.Label>Age</Form.Label>
+                            <Form.Label htmlFor="patientAge">Age</Form.Label>
                             <Form.Control
+                                id="patientAge"
                                 type="number"
                                 name="age"
                                 value={form.age}
@@ -72,16 +75,19 @@ const AddPatient = () => {
                                 required
                                 placeholder="Enter patient's age"
                                 min="0"
+                                autoComplete="off"
                             />
                         </Form.Group>
 
                         <Form.Group className="mb-4">
-                            <Form.Label>Gender</Form.Label>
+                            <Form.Label htmlFor="patientGender">Gender</Form.Label>
                             <Form.Select
+                                id="patientGender"
                                 name="gender"
                                 value={form.gender}
                                 onChange={handleChange}
                                 required
+                                autoComplete="sex"
                             >
                                 <option value="">Select Gender</option>
                                 <option value="Male">Male</option>
@@ -91,7 +97,7 @@ const AddPatient = () => {
                         </Form.Group>
 
                         <div className="d-grid gap-2">
-                            <Button 
+                            <Button
                                 style={customStyles.buttonPrimary}
                                 type="submit"
                                 size="lg"
