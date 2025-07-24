@@ -17,16 +17,15 @@ router.route('/').get((req, res) => {
 // Add new patient
 router.route('/add')
     .post((req, res) => {
+        console.log('Received POST /add:', req.body); // ✅ Add this
+
         const { name, age, gender } = req.body;
 
-        const newPatient =
-            new Patient({ name, age, gender });
+        const newPatient = new Patient({ name, age, gender });
 
         newPatient.save()
-            .then(savedPatient =>
-                res.json(savedPatient))
-            .catch(err => res.status(400)
-                .json('Error: ' + err));
+            .then(savedPatient => res.json(savedPatient))
+            .catch(err => res.status(400).json('Error: ' + err));
     });
 
 // Update patient data

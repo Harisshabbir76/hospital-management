@@ -30,6 +30,7 @@ const AddPatient = () => {
         try {
             const res = await axios.post('http://51.20.54.29:5000/patients/add', form);
             console.log('Response:', res); // ✅ DEBUG
+            console.log('AddPatient component re-rendered. Message:', message);
             setMessage({
                 text: 'Patient added successfully!',
                 variant: 'success'
